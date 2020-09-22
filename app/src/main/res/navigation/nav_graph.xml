@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentMain">
+
+    <fragment
+        android:id="@+id/fragmentMain"
+        android:name="com.example.navigationcomponent.FragmentMain"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentChooseRecipients"
+            app:destination="@id/fragmentChooseRecipients" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentChooseRecipients"
+        android:name="com.example.navigationcomponent.FragmentChooseRecipients"
+        android:label="fragment_choose_recipients"
+        tools:layout="@layout/fragment_choose_recipients" >
+        <action
+            android:id="@+id/action_fragmentChooseRecipients_to_fragmentAmount"
+            app:destination="@id/fragmentAmount" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAmount"
+        android:name="com.example.navigationcomponent.FragmentAmount"
+        android:label="fragment_amount"
+        tools:layout="@layout/fragment_amount" >
+        <argument
+            android:name="recipient"
+            app:argType="string"
+            android:defaultValue="not working" />
+    </fragment>
+</navigation>
