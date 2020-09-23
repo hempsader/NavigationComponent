@@ -28,7 +28,6 @@ import java.util.HashMap;
 public class FragmentAmount extends Fragment implements TextWatcher {
     private FragmentAmountBinding binding;
     private String args;
-    private HashMap<String,Integer> database;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -46,7 +45,6 @@ public class FragmentAmount extends Fragment implements TextWatcher {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        database  = Database.getDb();
     }
 
     /**
@@ -84,9 +82,9 @@ public class FragmentAmount extends Fragment implements TextWatcher {
         View v = binding.getRoot();
         args = FragmentAmountArgs.fromBundle(getArguments()).getRecipient();
         binding.editTextAmount.addTextChangedListener(this);
-        database.put("data",40);
 
-        Log.d("aa",database.get("data").toString());
+
+
         return v;
     }
 
@@ -98,9 +96,9 @@ public class FragmentAmount extends Fragment implements TextWatcher {
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         int amount = Integer.parseInt(charSequence.toString());
-        int currentAmount = database.get(args);
-database.put(args,currentAmount+amount);
-        Log.d("aa",database.get(args).toString());
+        int currentAmount = Database.getInstance().getDb().get(args);
+        Database.getInstance().addData(args,amount+currentAmount);
+        Log.d("aa",Database.getInstance().getDb().get(args).toString());
     }
 
     @Override

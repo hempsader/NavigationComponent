@@ -3,24 +3,35 @@ package com.example.navigationcomponent.data;
 import java.util.HashMap;
 
 public class Database {
-    private static HashMap<String,Integer> db = new HashMap<>();
-    private Database(){}
-    public static HashMap<String,Integer> getDb()
+    private static Database instance;
+    private static HashMap<String,Integer> db = null;
+
+    public static Database getInstance()
     {
-        if(db == null)
+        if(instance == null)
         {
-            db = new HashMap<>();
+            instance = new Database();
         }
+        return instance;
+    }
+
+    private Database()
+    {
+        db = new HashMap<>();
         db.put("food",400);
         db.put("data",200);
         db.put("games",100);
         db.put("rent",300);
-        return db;
     }
 
-    public static void setData(String key, int amount)
+    public HashMap<String,Integer> getDb()
     {
-        db.put(key,amount);
+        return db;
     }
+    public void addData(String data, int amount)
+    {
+        db.put(data,amount);
+    }
+
 
 }
